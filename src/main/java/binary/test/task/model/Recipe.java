@@ -9,14 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
 
-@Entity
+@Entity(name = "recipes")
 @Data
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dateCreated;
+    private String name;
     private String description;
     @OneToMany
-    private List<ChildRecipe> recipes;
+    private List<Recipe> children;
+    @OneToMany
+    private List<Version> versions;
 }
